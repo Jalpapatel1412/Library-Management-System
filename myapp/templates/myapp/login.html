@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %}
+
+{#{% load crispy_forms_tags %}#}
+
+{% block body_block %}
+    <form action="{% url 'myapp:login' %}" method="post">
+        {% csrf_token %}
+         <div class="form-group form-row">
+            <div class="form-group col-md-4 mb-0"></div>
+            <div class="form-group col-md-4 mb-0">
+                <label for="username">Username:</label>
+                <input type="input" class="form-control" id="username" name="username">
+            </div>
+        </div>
+        <div class="form-group form-row">
+            <div class="form-group col-md-4 mb-0"></div>
+            <div class="form-group col-md-4 mb-0">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+        </div>
+
+        <div class="form-group form-row">
+            <div class="form-group col-md-4 mb-0"></div>
+            <div class="form-group col-md-4 mb-0">
+            <input type="submit" name="submit" value="Login" />
+            <a style="color: darkred" href="{% url 'myapp:password_reset' %}">Forgot your Password</a> <!-- Optional feature : 07 -->
+            <hr />
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}. <a href = "{%  url 'myapp:logout' %}">Logout</a></p> <!--required feature : 05-->
+            {% else %}
+                <p>Welcome, new user? Please <button type="submit"  name="register" value="register" class="registerhover save btn btn-primary"><a class="registerhover" href = "{%  url 'myapp:user_signup' %}">Register</a></button></p> <!--required feature : 05-->
+            {% endif %}
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

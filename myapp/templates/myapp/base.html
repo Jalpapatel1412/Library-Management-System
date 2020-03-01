@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}" />
+        <title>eBook APP - {% block title %}Welcome!{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+            .navbar-dark .navbar-nav .nav-link {
+                color: yellow;
+            }
+            .cover{
+                width:100%;
+                height: 650px;
+            }
+            .carousel-caption {
+                position: absolute;
+                right: 15%;
+                top: 45px;
+                left: 15%;
+                z-index: 10;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                color: #fff;
+                text-align: center;
+            }
+            .captioncover{
+                font-size: 100px;
+            }
+            .carousel-caption2 {
+                position: absolute;
+                right: 15%;
+                font-size: 40px;
+                top: 120px;
+                left: 15%;
+                z-index: 10;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                color: #fff;
+                text-align: center;
+            }
+            .hbar1{
+                margin: 9px 16px;
+            }
+            .registerhover{
+                color: white;
+            }
+            .registerhover :hover{
+                color: white;
+                text-decoration-line: none;
+            }
+            .nav-link {
+    color: rgba(255,255,255,.5);
+    margin: 11px 46px 9px 46px;
+}
+        </style>
+    </head>
+
+    <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Links -->
+            <ul class="navbar-nav">
+                <li class=" hbar1 nav-item">
+                    <a href = "{% url 'myapp:index' %}" class="nav-link">Main</a>
+                </li>
+                <li class="hbar1 nav-item">
+                    <a href="/myapp/about/" class="nav-link">About</a>
+                </li>
+                <li class="hbar1 nav-item">
+                    <a href = "{% url 'myapp:findbooks' %}" class="nav-link">Find Books</a>
+                </li>
+                <li class="hbar1 nav-item">
+                    <a href = "{% url 'myapp:place_order' %}" class="nav-link">Place Order</a>
+                </li>
+                <li class="hbar1 nav-item">
+                    <a href = "{% url 'myapp:review' %}" class="nav-link">Review Order</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="hbar1 nav-item">
+                    <a href = "{% url 'myapp:myorders' %}" class="nav-link">My Orders</a>
+                </li>
+                 <li class="hbar1 nav-item">
+                    <a href = "{% url 'myapp:logout' %}" class="nav-link">Logout</a>
+                 </li>
+                 {% else %}
+                  <li class="hbar1 nav-item">
+                    <a href = "{% url 'myapp:login' %}" class="nav-link">Login</a>
+                  </li>
+                 {% endif %}
+            </ul>
+        </nav>
+        <div>
+{#            <h2 class="heading">{% block myhdg %}<marquee>HELLO <span class="name">{{ request.user.username|upper }}</span>  </marquee>{% endblock %}</h2> <!--required feature : 06-->#}
+            <h2><center>{% block myhdg %}{% endblock %}</center></h2>
+            {% block body_block %} {% endblock %}
+        </div>
+
+{#        <div>#}
+{#            <ol>#}
+{#                <li class="hbar1"><a href="/myapp/about/">Find out about this site</a></li>#}
+{#                <li class="hbar1"><a href = "{% url 'myapp:index' %}">Click here to return to main page</a></li>#}
+{#                <li class="hbar1"><a href = "{% url 'myapp:findbooks' %}">Click here to return to find books</a></li>#}
+{#                <li class="hbar1"><a href = "{% url 'myapp:place_order' %}">Click here to return to place order</a><br/></li>#}
+{##}
+{#            </ol>#}
+{#        </div>#}
+{#        <div>#}
+{#            {% if user.is_authenticated %}#}
+{#                <p>Welcome, {{ user.username }}. <a href = "{%  url 'myapp:logout' %}">Logout</a></p> <!--required feature : 05-->#}
+{#            {% else %}#}
+{#                <p>Welcome, new user? Please <button type="submit"  name="register" value="register" class="registerhover save btn btn-primary"><a class="registerhover" href = "{%  url 'myapp:user_signup' %}">Register</a></button></p> <!--required feature : 05-->#}
+{#            {% endif %}#}
+{#        </div>#}
+    </body>
+</html>

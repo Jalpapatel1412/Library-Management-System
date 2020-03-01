@@ -1,0 +1,37 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block%}
+    {% if member_orders %}
+        <h2>List of Your Orders:</h2>
+        <ol>
+            {% for order  in member_orders %} {#  Oprion feature :09#}
+                {% for b in order.books.all %}
+{#                    <li> {{b.title}}</li>#}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>BookTitle</th>
+                                <th>BookPrice</th>
+                                <th>OrderDate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <td>{{ b.title }}</td>
+                            <td>{{ b.price }}</td>
+                            <td>{{ order.order_Date | date}}</td>
+                        </tbody>
+                    </table>
+                {% endfor %}
+            {% endfor %}
+        </ol>
+
+    {% else %}
+        <strong>There are no available orders!</strong>
+    {% endif %}
+
+{#    Namespace#}
+{#    <p><a href="{% url 'myapp:about_page'%}">About page</a></p>#}
+
+
+{% endblock %}
+

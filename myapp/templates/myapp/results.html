@@ -1,0 +1,15 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block%}
+    <h2 style="text-transform: uppercase;"><marquee>Hello {{ name }}</marquee></h2>
+    <h2>Results from your search:</h2>
+    {% if category %}
+        <h3>Category: <span class="badge badge-secondary">{{ category }}</span></h3>
+    {% endif %}
+        <ol>
+            {% for book  in booklist %}
+                <li class="list-group-item"> <a href="{% url 'myapp:detail' book_id=book.id %}">{{book.title}} </a> </li>
+            {% endfor %}
+        </ol>
+{#   <p><a href="{% url 'myapp:index'%}">Back to the main</a></p>#}
+{% endblock %}

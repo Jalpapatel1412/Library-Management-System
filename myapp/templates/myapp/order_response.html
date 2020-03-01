@@ -1,0 +1,10 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+    {% if books %}
+        <p>The book(s) ordered are:</p>
+        {% for b  in books %}
+            <li>{{ b.title }}</li>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

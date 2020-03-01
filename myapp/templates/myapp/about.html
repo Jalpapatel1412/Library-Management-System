@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'myapp/base.html' %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}" />
+    <title>eBook APP About page</title>
+</head>
+{% block body_block%}
+    <h1><marquee>This is an about page of eBook App</marquee></h1>
+        {% if mynum %}
+            <p>Your Lucky number is: <span class="badge  badge-secondary">{{ mynum }}</span> </p>
+        {% endif %}
+{#    <p><button type="button" class="registerhover btn btn-dark"><a class="registerhover"  href="/myapp/">Back to the main</a></button></p>#}
+{% endblock %}
+</html>

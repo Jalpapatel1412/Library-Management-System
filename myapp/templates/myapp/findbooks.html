@@ -1,0 +1,12 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+    <form action="{% url 'myapp:findbooks' %}" method="post" style="margin: 20px;">
+        {% csrf_token %}
+{#        {{ form.as_p }}#}
+        {{ form.as_p }}
+        <button type="submit" name="submit1" value="Find Books" class="btn btn-success">Find Books</button>
+{#        <input type="submit" name="submit1" value="Find Books" />#}
+    </form>
+
+{% endblock %}

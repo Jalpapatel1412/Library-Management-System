@@ -1,0 +1,16 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+    <form id="placeOrderForm" action="{% url 'myapp:place_order' %}" method="post" style="margin: 20px">
+        {% csrf_token %}
+{#        {{ form.as_p }}#}
+        {{ form|crispy }}
+        <button type="submit" name="submit2" value="Place Order" class="save btn btn-success">Place Order</button>
+{#        <input type="submit" name="submit1" value="Place Order" />#}
+    </form>
+    <script>
+    $("#placeOrderForm").on('submit', function(event) {
+    alert("Order placed Sucessfully");})
+    </script>
+
+{% endblock %}

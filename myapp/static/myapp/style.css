@@ -1,0 +1,12 @@
+.hbar1 {
+    display: inline;
+    margin: 15px;
+}
+
+h1{
+    background-color: slategray;
+    text-decoration-color: chocolate;
+    font-size: 14px;
+    color: aqua;
+    font-style: italic;
+}

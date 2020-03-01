@@ -1,0 +1,80 @@
+{% extends 'myapp/base.html' %}
+
+{#{% block myhdg%}#}
+{#    <h1>Hello {{ username }}</h1>#}
+{#{% endblock %}#}
+<html>
+<head>
+<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <style>
+            .bookul{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333333;
+            }
+            .bookli{
+                float: left;
+            }
+            .booka{
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 16px;
+                text-decoration: none;
+            }
+            .contop{
+                margin-bottom: -9.5rem;
+                top: 120px;
+            }
+        </style>
+</head>
+<body>
+<h2 class="heading">{% block myhdg %}<marquee>HELLO <span class="name">{{ request.user.username|upper }}</span>  </marquee>{% endblock %}</h2> <!--required feature : 06-->
+{% block body_block%}
+    <div class="cover" style="background-image: url('https://i.ibb.co/JR1DCt6/860-main-library-bacteria.png')">
+{#        <img class = "cover" src="https://i.ibb.co/JR1DCt6/860-main-library-bacteria.png" alt="860-main-library-bacteria" border="0">#}
+        <h4 style="color:lightgoldenrodyellow"><i>{{ last_login }}</i></h4>
+        <div class="carousel-caption2">
+            <br/>
+            <h2 class = "captioncover">A BOOK IS A DREAM</h2>
+            The book that you hold in your hand.
+        </div> <br/>
+
+    {% if booklist %}
+
+
+                <div class="container" style="margin-top: 230px">
+                    <h2 style="color: yellow"><u><center>LIST OF BOOKS</center></u></h2>
+                <div class="row">
+                {% for book  in booklist %}
+{#                {% for i in booklist.count %}    #}
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                            <div class="caption">
+{#                                <img class="img-rounded" src='/static/img/00{{ book.id }}.jpg' alt="Lights" style="width:100%">#}
+                                <li class="list-group-item"><a  href="{% url 'myapp:detail' book_id=book.id %}">{{book.title}}</a></li> <br/>
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+                </div>
+                </div>
+    {% else %}
+        <strong>There are no available books!</strong>
+    {% endif %}
+
+{#    Namespace#}
+{#    <p><a href="{% url 'myapp:about_page'%}">About page</a></p>#}
+
+</div>
+{% endblock %}
+</body>
+</html>

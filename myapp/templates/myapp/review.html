@@ -1,0 +1,21 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+    <form id="ReviewForm" action="{% url 'myapp:review' %}" method="post" style="margin: 20px;">
+        {% csrf_token %}
+{#        {{ form.as_p}}#}
+        {{ form|crispy }}
+        {%if error %}
+            <b/><p style="color: red">{{ error }} </p>
+            <button type="submit" name="submit1" value="Submit Review" class="save btn btn-success" hidden>Submit Review</button>
+        {% else %}
+            <button type="submit" id="review" name="submit1" value="Submit Review" class="save btn btn-success" >Submit Review</button>
+{#        <input type="submit" name="submit1" value="Submit Review" />#}
+{#            <script>#}
+{#            $("#review").on('submit', function(event) {#}
+{#            alert("Review Added Sucessfully");})#}
+{#            </script>#}
+        {% endif %}
+    </form>
+
+{% endblock %}
